@@ -14,7 +14,7 @@ ENV PY3VER=3.7.7
 
 # Blender branch from which to build
 # if you want latest alpha set it to "master"
-ENV BRANCH=blender-v2.82-release
+ENV BRANCH=master
 
 # Update sys and install needed packages
 RUN yum -y update \
@@ -71,7 +71,6 @@ RUN mkdir /usr/src/blender \
  && cd /usr/src/blender/lib \
  && svn checkout https://svn.blender.org/svnroot/bf-blender/trunk/lib/linux_centos7_x86_64 \
  && cd /usr/src/blender/blender_28_mod \
- && git pull --rebase http://git.blender.org/blender.git $BRANCH \
  && git remote set-url origin git://git.blender.org/blender.git \
  && git submodule sync \
  && git submodule update --init --recursive \
