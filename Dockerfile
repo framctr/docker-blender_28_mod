@@ -1,6 +1,4 @@
 # Build a portable nantille/blender_28_mod in a virtual env.
-# Resulted archive is saved on /home (so it should be shared
-# with an host folder) :)
 #
 # Useful link at https://wiki.blender.org/wiki/Building_Blender/Linux/Fedora
 
