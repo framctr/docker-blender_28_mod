@@ -12,7 +12,8 @@ ENV PY3VER=3.7.7
 
 # Blender branch from which to build
 # if you want latest alpha set it to "master"
-ENV BRANCH=master
+ENV BRANCH=blender-v2.83-release
+ENV TG_LIB=blender-2.83-release
 
 # Update sys and install needed packages
 RUN yum -y update \
@@ -67,8 +68,11 @@ RUN mkdir /usr/src/blender \
  && git clone git://github.com/nantille/blender_28_mod \
  && mkdir /usr/src/blender/lib \
  && cd /usr/src/blender/lib \
- && svn checkout https://svn.blender.org/svnroot/bf-blender/trunk/lib/linux_centos7_x86_64 \
+ && svn checkout https://svn.blender.org/svnroot/bf-blender/tags/$TG_LIB/lib/linux_centos7_x86_64/ \
  && cd /usr/src/blender/blender_28_mod \
+ && git config --global user.name 'Marco Polo' \
+ && git config --global user.email '<>' \
+ && git pull --rebase http://git.blender.org/blender.git $BRANCH \
  && git remote set-url origin git://git.blender.org/blender.git \
  && git submodule sync \
  && git submodule update --init --recursive \
